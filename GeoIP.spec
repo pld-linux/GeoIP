@@ -9,7 +9,7 @@ Source0:	http://www.maxmind.com/download/geoip/api/c/%{name}-%{version}.tar.gz
 # Source0-md5:	0cd8fab82963f9c0e293a0faf6c7c9cd
 Patch0:		%{name}-man-makefile.patch
 # note: "c" is a filename, do not add '/'
-URL:		http://www.maxmind.com/app/c/
+URL:		http://www.maxmind.com/app/c
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
