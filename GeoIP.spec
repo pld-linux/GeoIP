@@ -99,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %{_datadir}/%{name}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/GeoIP.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/GeoIP.conf
 %{_mandir}/man1/*
 
 %files devel
