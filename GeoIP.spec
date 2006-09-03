@@ -22,7 +22,7 @@ database that is accurate as of March 2003. This database simply
 contains IP blocks as keys, and countries as values. This database
 should be more complete and accurate than using reverse DNS lookups.
 Commercial databases and automatic update services are available from
-http://www.maxmind.com/.
+<http://www.maxmind.com/>.
 
 This library can be used to automatically select the geographically
 closest mirror, to analyze your web server logs to determine the
@@ -36,7 +36,7 @@ U¿ywa do tego zapisanej w pliku bazy danych (z marca 2003). W bazie
 tej adresy IP s± kluczami, a pañstwa warto¶ciami. Powinna ona byæ
 dok³adniejsza ni¿ sprawdzanie odwrotnego DNS. Komercyjne bazy oraz
 us³ugi automatycznych aktualizacji dostêpne s± na stronie
-http://www.maxmind.com/.
+<http://www.maxmind.com/>.
 
 Ta biblioteka mo¿e byæ u¿ywana do automatycznego wyboru najbli¿szego
 geograficznie mirrora, analizy logów serwera WWW w celu okre¶lenia
@@ -47,7 +47,7 @@ dotycz±cych kart kredytowych oraz kontroli eksportu oprogramowania.
 Summary:	Header files for GeoIP library
 Summary(pl):	Pliki nag³ówkowe biblioteki GeoIP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for GeoIP library.
@@ -59,7 +59,7 @@ Pliki nag³ówkowe biblioteki GeoIP.
 Summary:	Static GeoIP library
 Summary(pl):	Statyczna biblioteka GeoIP
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static GeoIP library.
