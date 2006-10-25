@@ -48,7 +48,7 @@ dotycz±cych kart kredytowych oraz kontroli eksportu oprogramowania.
 Summary:	GeoIP Library
 Summary(pl):	Biblioteka GeoIP
 Group:		Libraries
-Conflicts:	%{name} < 1.4.0-2
+Conflicts:	GeoIP < 1.4.0-2
 
 %description libs
 GeoIP library.
