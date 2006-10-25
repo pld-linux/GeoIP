@@ -2,7 +2,7 @@ Summary:	Library to find what country an IP address or hostnames originate from
 Summary(pl):	Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
 Name:		GeoIP
 Version:	1.4.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://www.maxmind.com/download/geoip/api/c/%{name}-%{version}.tar.gz
@@ -13,6 +13,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	zlib-devel
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,11 +44,22 @@ geograficznie mirrora, analizy logów serwera WWW w celu okre¶lenia
 kraju, z którego pochodz± odwiedzaj±cy, do wykrywania oszustw
 dotycz±cych kart kredytowych oraz kontroli eksportu oprogramowania.
 
+%package libs
+Summary:	GeoIP Library
+Summary(pl):	Biblioteka GeoIP
+Group:		Libraries
+
+%description libs
+GeoIP library.
+
+%description libs -l pl
+Biblioteka GeoIP.
+
 %package devel
 Summary:	Header files for GeoIP library
 Summary(pl):	Pliki nag³ówkowe biblioteki GeoIP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for GeoIP library.
@@ -91,17 +103,20 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post libs	-p /sbin/ldconfig
+%postun	libs	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_datadir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/GeoIP.conf
 %{_mandir}/man1/*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
