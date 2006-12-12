@@ -7,8 +7,8 @@ License:	GPL v2
 Group:		Libraries
 Source0:	http://www.maxmind.com/download/geoip/api/c/%{name}-%{version}.tar.gz
 # Source0-md5:	da09a3d9a1a91e3d16c0a29e6b056c15
-# note: "c" is a filename, do not add '/'
 Patch0:		%{name}-link.patch
+# note: "c" is a filename, do not add '/'
 URL:		http://www.maxmind.com/app/c
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -86,7 +86,6 @@ Statyczna biblioteka GeoIP.
 %patch0 -p1 
 
 %build
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -106,8 +105,8 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post libs	-p /sbin/ldconfig
-%postun	libs	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
