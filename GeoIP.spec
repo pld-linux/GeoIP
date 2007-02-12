@@ -1,5 +1,5 @@
 Summary:	Library to find what country an IP address or hostnames originate from
-Summary(pl):	Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
+Summary(pl.UTF-8):   Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
 Name:		GeoIP
 Version:	1.4.1
 Release:	1
@@ -30,54 +30,54 @@ closest mirror, to analyze your web server logs to determine the
 countries of your visitors, for credit card fraud detection, and for
 software export controls.
 
-%description -l pl
-GeoIP jest bibliotek± napisan± w C umo¿liwiaj±c± u¿ytkownikowi
-odnalezienie pañstwa, z którego pochodzi dany adres IP lub domena.
-U¿ywa do tego zapisanej w pliku bazy danych (z marca 2003). W bazie
-tej adresy IP s± kluczami, a pañstwa warto¶ciami. Powinna ona byæ
-dok³adniejsza ni¿ sprawdzanie odwrotnego DNS. Komercyjne bazy oraz
-us³ugi automatycznych aktualizacji dostêpne s± na stronie
+%description -l pl.UTF-8
+GeoIP jest bibliotekÄ… napisanÄ… w C umoÅ¼liwiajÄ…cÄ… uÅ¼ytkownikowi
+odnalezienie paÅ„stwa, z ktÃ³rego pochodzi dany adres IP lub domena.
+UÅ¼ywa do tego zapisanej w pliku bazy danych (z marca 2003). W bazie
+tej adresy IP sÄ… kluczami, a paÅ„stwa wartoÅ›ciami. Powinna ona byÄ‡
+dokÅ‚adniejsza niÅ¼ sprawdzanie odwrotnego DNS. Komercyjne bazy oraz
+usÅ‚ugi automatycznych aktualizacji dostÄ™pne sÄ… na stronie
 <http://www.maxmind.com/>.
 
-Ta biblioteka mo¿e byæ u¿ywana do automatycznego wyboru najbli¿szego
-geograficznie mirrora, analizy logów serwera WWW w celu okre¶lenia
-kraju, z którego pochodz± odwiedzaj±cy, do wykrywania oszustw
-dotycz±cych kart kredytowych oraz kontroli eksportu oprogramowania.
+Ta biblioteka moÅ¼e byÄ‡ uÅ¼ywana do automatycznego wyboru najbliÅ¼szego
+geograficznie mirrora, analizy logÃ³w serwera WWW w celu okreÅ›lenia
+kraju, z ktÃ³rego pochodzÄ… odwiedzajÄ…cy, do wykrywania oszustw
+dotyczÄ…cych kart kredytowych oraz kontroli eksportu oprogramowania.
 
 %package libs
 Summary:	GeoIP Library
-Summary(pl):	Biblioteka GeoIP
+Summary(pl.UTF-8):   Biblioteka GeoIP
 Group:		Libraries
 Conflicts:	GeoIP < 1.4.0-2
 
 %description libs
 GeoIP library.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteka GeoIP.
 
 %package devel
 Summary:	Header files for GeoIP library
-Summary(pl):	Pliki nag³ówkowe biblioteki GeoIP
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki GeoIP
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for GeoIP library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki GeoIP.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki GeoIP.
 
 %package static
 Summary:	Static GeoIP library
-Summary(pl):	Statyczna biblioteka GeoIP
+Summary(pl.UTF-8):   Statyczna biblioteka GeoIP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static GeoIP library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka GeoIP.
 
 %prep
