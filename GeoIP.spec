@@ -1,5 +1,5 @@
 Summary:	Library to find what country an IP address or hostnames originate from
-Summary(pl.UTF-8):   Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
+Summary(pl.UTF-8):	Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
 Name:		GeoIP
 Version:	1.4.1
 Release:	1
@@ -46,7 +46,7 @@ dotyczących kart kredytowych oraz kontroli eksportu oprogramowania.
 
 %package libs
 Summary:	GeoIP Library
-Summary(pl.UTF-8):   Biblioteka GeoIP
+Summary(pl.UTF-8):	Biblioteka GeoIP
 Group:		Libraries
 Conflicts:	GeoIP < 1.4.0-2
 
@@ -58,7 +58,7 @@ Biblioteka GeoIP.
 
 %package devel
 Summary:	Header files for GeoIP library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki GeoIP
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GeoIP
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -70,7 +70,7 @@ Pliki nagłówkowe biblioteki GeoIP.
 
 %package static
 Summary:	Static GeoIP library
-Summary(pl.UTF-8):   Statyczna biblioteka GeoIP
+Summary(pl.UTF-8):	Statyczna biblioteka GeoIP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
