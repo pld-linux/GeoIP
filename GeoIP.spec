@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	GeoIP-db-Country >= 2008.12.02
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -100,6 +101,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
 
+# use GeoIP-db-Country package, which is updated more often (at least in PLD Linux)
+rm -f $RPM_BUILD_ROOT%{_datadir}/GeoIP/GeoIP.dat
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -115,8 +119,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_datadir}/%{name}
+%attr(755,root,root) %{_libdir}/libGeoIP.so.*.*.*
+%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libGeoIP.so.1
+%attr(755,root,root) %ghost %{_libdir}/libGeoIPUpdate.so.0
+%dir %{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
