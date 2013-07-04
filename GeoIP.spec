@@ -11,7 +11,7 @@ Patch0:		%{name}-no_tests.patch
 Patch1:		%{name}-pc.patch
 # note: "c" is a filename, do not add '/'
 URL:		http://www.maxmind.com/app/c
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	zlib-devel
@@ -103,10 +103,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
+
+%{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
 
 # use GeoIP-db-Country package, which is updated more often (at least in PLD Linux)
-rm -f $RPM_BUILD_ROOT%{_datadir}/GeoIP/GeoIP.dat
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/GeoIP/GeoIP.dat
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,25 +118,32 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/geoiplookup
+%attr(755,root,root) %{_bindir}/geoiplookup6
+%attr(755,root,root) %{_bindir}/geoipupdate
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/GeoIP.conf
-%{_mandir}/man1/*
+%{_mandir}/man1/geoiplookup.1*
+%{_mandir}/man1/geoiplookup6.1*
+%{_mandir}/man1/geoipupdate.1*
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGeoIP.so.*.*.*
-%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libGeoIP.so.1
+%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libGeoIPUpdate.so.0
 %dir %{_datadir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
+%attr(755,root,root) %{_libdir}/libGeoIP.so
+%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so
+%{_libdir}/libGeoIP.la
+%{_libdir}/libGeoIPUpdate.la
+%{_includedir}/GeoIP*.h
 %{_pkgconfigdir}/geoip.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libGeoIP.a
+%{_libdir}/libGeoIPUpdate.a
