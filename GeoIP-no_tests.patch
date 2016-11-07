@@ -1,10 +1,10 @@
---- Makefile.am.orig	2009-02-24 17:03:23.000000000 +0100
-+++ Makefile.am	2009-06-21 16:36:15.390466890 +0200
-@@ -5,7 +5,6 @@
+--- GeoIP-1.6.9/Makefile.am.orig	2016-11-07 17:46:48.770756605 +0100
++++ GeoIP-1.6.9/Makefile.am	2016-11-07 17:47:11.177423043 +0100
+@@ -6,7 +6,6 @@
+ SUBDIRS =		\
+ 	libGeoIP	\
  	apps		\
- 	conf		\
- 	data		\
 -	test		\
  	man
  
- EXTRA_DIST = README.OSX READMEwin32static.txt README.MinGW READMEwin32.txt GeoIPWinDLL.patch TODO bootstrap GeoIP.spec GeoIP.spec.in Makefile.netware Makefile.vc Makefile.win32 get_ver.awk geoip.ico
+ pkgconfigdir = $(libdir)/pkgconfig/

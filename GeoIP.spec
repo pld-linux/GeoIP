@@ -1,20 +1,19 @@
 Summary:	Library to find what country an IP address or hostnames originate from
 Summary(pl.UTF-8):	Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
 Name:		GeoIP
-Version:	1.5.1
-Release:	2
-License:	GPL v2
+Version:	1.6.9
+Release:	1
+License:	LGPL v2.1+ (library), CC-BY-SA v3.0 (database)
 Group:		Libraries
-Source0:	http://www.maxmind.com/download/geoip/api/c/%{name}-%{version}.tar.gz
-# Source0-md5:	36b82f3558e6e2ebdd11a56c5db21dbc
+#Source0Download: https://github.com/maxmind/geoip-api-c/releases
+Source0:	https://github.com/maxmind/geoip-api-c/releases/download/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	7475942dc8155046dddb4846f587a7e6
 Patch0:		%{name}-no_tests.patch
-Patch1:		%{name}-pc.patch
 # note: "c" is a filename, do not add '/'
 URL:		http://www.maxmind.com/app/c
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.10
 BuildRequires:	libtool
-BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GeoIP-db-Country >= 2009.05.02
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,20 +47,22 @@ kraju, z którego pochodzą odwiedzający, do wykrywania oszustw
 dotyczących kart kredytowych oraz kontroli eksportu oprogramowania.
 
 %package libs
-Summary:	GeoIP Library
-Summary(pl.UTF-8):	Biblioteka GeoIP
+Summary:	GeoIP library for GeoIP Legacy database format
+Summary(pl.UTF-8):	Biblioteka GeoIP do obsługi baz danych w formacie GeoIP Legacy
+License:	LGPL v2.1+
 Group:		Libraries
 Conflicts:	GeoIP < 1.4.0-2
 
 %description libs
-GeoIP library.
+GeoIP library for GeoIP Legacy (dat) database format.
 
 %description libs -l pl.UTF-8
-Biblioteka GeoIP.
+Biblioteka GeoIP do obsługi baz danych w formacie GeoIP Legacy (dat).
 
 %package devel
 Summary:	Header files for GeoIP library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki GeoIP
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -74,6 +75,7 @@ Pliki nagłówkowe biblioteki GeoIP.
 %package static
 Summary:	Static GeoIP library
 Summary(pl.UTF-8):	Statyczna biblioteka GeoIP
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -85,12 +87,11 @@ Statyczna biblioteka GeoIP.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
+%patch0 -p1
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure
@@ -100,14 +101,10 @@ Statyczna biblioteka GeoIP.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/GeoIP
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_sysconfdir}/GeoIP.conf.default
-
-# use GeoIP-db-Country package, which is updated more often (at least in PLD Linux)
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/GeoIP/GeoIP.dat
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -117,33 +114,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
+%doc AUTHORS ChangeLog LICENSE NEWS.md README.md
 %attr(755,root,root) %{_bindir}/geoiplookup
 %attr(755,root,root) %{_bindir}/geoiplookup6
-%attr(755,root,root) %{_bindir}/geoipupdate
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/GeoIP.conf
 %{_mandir}/man1/geoiplookup.1*
 %{_mandir}/man1/geoiplookup6.1*
-%{_mandir}/man1/geoipupdate.1*
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGeoIP.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libGeoIP.so.1
-%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libGeoIPUpdate.so.0
-%dir %{_datadir}/%{name}
+%dir %{_datadir}/GeoIP
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGeoIP.so
-%attr(755,root,root) %{_libdir}/libGeoIPUpdate.so
 %{_libdir}/libGeoIP.la
-%{_libdir}/libGeoIPUpdate.la
-%{_includedir}/GeoIP*.h
+%{_includedir}/GeoIP.h
+%{_includedir}/GeoIPCity.h
 %{_pkgconfigdir}/geoip.pc
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libGeoIP.a
-%{_libdir}/libGeoIPUpdate.a
