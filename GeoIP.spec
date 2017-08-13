@@ -1,13 +1,13 @@
 Summary:	Library to find what country an IP address or hostnames originate from
 Summary(pl.UTF-8):	Biblioteka do sprawdzenia z jakiego kraju pochodzi adres IP lub domena
 Name:		GeoIP
-Version:	1.6.9
+Version:	1.6.11
 Release:	1
 License:	LGPL v2.1+ (library), CC-BY-SA v3.0 (database)
 Group:		Libraries
 #Source0Download: https://github.com/maxmind/geoip-api-c/releases
 Source0:	https://github.com/maxmind/geoip-api-c/releases/download/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	7475942dc8155046dddb4846f587a7e6
+# Source0-md5:	1e08aeb2b87d8908249998b3019d0fd7
 Patch0:		%{name}-no_tests.patch
 # note: "c" is a filename, do not add '/'
 URL:		http://www.maxmind.com/app/c
